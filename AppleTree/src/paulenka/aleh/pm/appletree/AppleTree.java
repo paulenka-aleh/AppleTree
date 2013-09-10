@@ -7,8 +7,16 @@ public class AppleTree {
         return 0;
     }
 
+    public int grow(int parseInt) {
+        return 0;
+    }
+
     public int shake() {
         System.out.println("You have shaken the apple tree.");
+        return 0;
+    }
+
+    public int shake(int parseInt) {
         return 0;
     }
 }
