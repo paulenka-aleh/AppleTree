@@ -3,9 +3,19 @@ AppleTree
 
 Model of an apple tree on which apples are grow. You can shake it to make it drop apples down.
 
-Capacity of flowers amd apples is limited for 5000
+Capacity of flowers and apples is limited for 5000
 Apples are grow only from flowers.
-Extended methods allow to shake tree for some seconds and wait for some time while flowers and apple are grow.
+Extended methods allow to shake tree for some seconds and wait for some time while flowers and apples are grow.
+
+How to use:
+ - blossom [times]:
+       Wait till random number of flowers blossom. Optionally repeat command n times. Displays number of flowers blossomed.
+ - grow [times]
+       Wait till random number of apples grow. Optionally repeat command n times. Displays number of apples grown.
+ - shake [times]
+       Shake the tree, so some apples may fall down. Optionally repeat command n times. Displays number of apples fallen.
+ - exit:
+       Terminates the program.
 
 During solving this task I learned how to:
  - Set up Git on Windows and set up connection via SSH or HTTPS.
