@@ -23,10 +23,14 @@ public class AppleTree {
     }
 
     public int grow() {
-        int applesGrown = getRandom().nextInt(LIMIT - getNumberOfApples());
-        setNumberOfApples(getNumberOfApples() + applesGrown);
+        if (getNumberOfApples() < LIMIT) {
+            int applesGrown = getRandom().nextInt(LIMIT - getNumberOfApples());
+            setNumberOfApples(getNumberOfApples() + applesGrown);
 
-        return applesGrown;
+            return applesGrown;
+        } else {
+            return 0;
+        }
     }
 
     public int grow(int days) {
@@ -38,10 +42,14 @@ public class AppleTree {
     }
 
     public int shake() {
-        int applesFallen = getRandom().nextInt(getNumberOfApples());
-        setNumberOfApples(getNumberOfApples() - applesFallen);
+        if (getNumberOfApples() > 0) {
+            int applesFallen = getRandom().nextInt(getNumberOfApples());
+            setNumberOfApples(getNumberOfApples() - applesFallen);
 
-        return applesFallen;
+            return applesFallen;
+        } else {
+            return 0;
+        }
     }
 
     public int shake(int seconds) {
