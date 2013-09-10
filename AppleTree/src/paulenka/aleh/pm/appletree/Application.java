@@ -70,15 +70,15 @@ public class Application {
             for (String arg : args) {
                 try {
                     int fallen = getAppleTree().grow(Integer.parseInt(arg));
-                    System.out.print("You wait " + arg + " days.");
+                    System.out.println("You wait " + arg + " days.");
                     describeShakeResult(fallen);
                 } catch (NumberFormatException ex) {
                     System.out.println("Can't wait for \"" + arg + "\" days, it's not a number!");
                 }
             }
         } else {
-            int fallen = getAppleTree().shake();
-            System.out.print("You wait for a long time...");
+            int fallen = getAppleTree().grow();
+            System.out.println("You wait for a long time...");
             describeGrowResult(fallen);
         }
     }
@@ -86,13 +86,13 @@ public class Application {
     protected void describeGrowResult(int fallen) {
         switch (fallen) {
             case 0:
-                System.out.print("Unfortunately apple tree seemns to be empty.");
+                System.out.println("Unfortunately apple tree seemns to be empty.");
                 break;
             case 1:
-                System.out.print("Only one apple is grown on the tree.");
+                System.out.println("Only one apple is grown on the tree.");
                 break;
             default:
-                System.out.print(fallen + " apples are grown on the tree.");
+                System.out.println(fallen + " apples are grown on the tree.");
                 break;
         }
     }
@@ -102,7 +102,7 @@ public class Application {
             for (String arg : args) {
                 try {
                     int fallen = getAppleTree().shake(Integer.parseInt(arg));
-                    System.out.print("You've shaken the apple tree with full force for " + arg + " seconds.");
+                    System.out.println("You've shaken the apple tree with full force for " + arg + " seconds.");
                     describeShakeResult(fallen);
                 } catch (NumberFormatException ex) {
                     System.out.println("Can't shake with for \"" + arg + "\" seconds, it's not a number!");
@@ -110,7 +110,7 @@ public class Application {
             }
         } else {
             int fallen = getAppleTree().shake();
-            System.out.print("You've shaken the apple tree with full force.");
+            System.out.println("You've shaken the apple tree with full force.");
             describeShakeResult(fallen);
         }
     }
@@ -118,13 +118,13 @@ public class Application {
     protected void describeShakeResult(int fallen) {
         switch (fallen) {
             case 0:
-                System.out.print("Unfortunately nothing happens.");
+                System.out.println("Unfortunately nothing happens.");
                 break;
             case 1:
-                System.out.print("Only one apple fall down");
+                System.out.println("Only one apple fall down");
                 break;
             default:
-                System.out.print(fallen + " apples fall down.");
+                System.out.println(fallen + " apples fall down.");
                 break;
         }
     }
