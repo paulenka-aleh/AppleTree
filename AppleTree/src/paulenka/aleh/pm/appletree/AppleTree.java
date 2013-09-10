@@ -32,14 +32,11 @@ public class AppleTree {
     }
 
     public int grow() {
-        if (getNumberOfApples() < LIMIT && getNumberOfFlowers() > 0) {
-            int applesGrown = getRandom().nextInt(Math.min(getNumberOfFlowers(), LIMIT - getNumberOfApples()));
-            setNumberOfApples(getNumberOfApples() + applesGrown);
+        int applesGrown = getRandom().nextInt(Math.min(getNumberOfFlowers() + 1, LIMIT - getNumberOfApples() + 1));
+        setNumberOfApples(getNumberOfApples() + applesGrown);
+        setNumberOfFlowers(getNumberOfFlowers() - applesGrown);
 
-            return applesGrown;
-        } else {
-            return 0;
-        }
+        return applesGrown;
     }
 
     public int grow(int days) {
@@ -51,14 +48,10 @@ public class AppleTree {
     }
 
     public int shake() {
-        if (getNumberOfApples() > 0) {
-            int applesFallen = getRandom().nextInt(getNumberOfApples());
-            setNumberOfApples(getNumberOfApples() - applesFallen);
+        int applesFallen = getRandom().nextInt(getNumberOfApples() + 1);
+        setNumberOfApples(getNumberOfApples() - applesFallen);
 
-            return applesFallen;
-        } else {
-            return 0;
-        }
+        return applesFallen;
     }
 
     public int shake(int seconds) {
@@ -70,14 +63,10 @@ public class AppleTree {
     }
 
     public int blossom() {
-        if (getNumberOfFlowers() < LIMIT) {
-            int flowersGrown = getRandom().nextInt(LIMIT - getNumberOfFlowers());
-            setNumberOfFlowers(getNumberOfFlowers() + flowersGrown);
+        int flowersGrown = getRandom().nextInt(LIMIT - getNumberOfFlowers() + 1);
+        setNumberOfFlowers(getNumberOfFlowers() + flowersGrown);
 
-            return flowersGrown;
-        } else {
-            return 0;
-        }
+        return flowersGrown;
     }
 
     public int blossom(int days) {
