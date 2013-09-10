@@ -29,8 +29,12 @@ public class AppleTree {
         return applesGrown;
     }
 
-    public int grow(int parseInt) {
-        return 0;
+    public int grow(int days) {
+        int applesGrown = 0;
+        for (int i = 0; i < days; ++i) {
+            applesGrown += grow();
+        }
+        return applesGrown;
     }
 
     public int shake() {
@@ -40,7 +44,11 @@ public class AppleTree {
         return applesFallen;
     }
 
-    public int shake(int parseInt) {
-        return 0;
+    public int shake(int seconds) {
+        int applesFallen = 0;
+        for (int i = 0; i < seconds; ++i) {
+            applesFallen += shake();
+        }
+        return applesFallen;
     }
 }
