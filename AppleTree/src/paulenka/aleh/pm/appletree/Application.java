@@ -3,6 +3,7 @@ package paulenka.aleh.pm.appletree;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class Application {
 
@@ -29,14 +30,17 @@ public class Application {
         try (BufferedReader in = new BufferedReader(new InputStreamReader(System.in))) {
             System.out.println("Apple tree is ready!");
             String command;
+            String[] args;
             do {
-                command = in.readLine();
+                String line = in.readLine();
+                command = getCommand(line);
+                args = getArgs(line);
                 switch (command) {
                     case COMMAND_GROW:
-                        executeGrow();
+                        executeGrow(args);
                         break;
                     case COMMAND_SHAKE:
-                        executeShake();
+                        executeShake(args);
                         break;
                     case COMMAND_EXIT:
                         executeExit();
@@ -51,15 +55,81 @@ public class Application {
         }
     }
 
-    protected void executeGrow() {
-        getAppleTree().grow();
+    protected String getCommand(String line) {
+        String[] parts = line.split("\\s");
+        return parts.length > 0 ? parts[0] : "";
     }
 
-    protected void executeShake() {
-        getAppleTree().shake();
+    protected String[] getArgs(String line) {
+        String[] parts = line.split("\\s");
+        return parts.length > 1 ? Arrays.copyOfRange(parts, 1, parts.length) : new String[]{};
     }
 
-    private void executeExit() {
+    protected void executeGrow(String[] args) {
+        if (args.length > 0) {
+            for (String arg : args) {
+                try {
+                    int fallen = getAppleTree().grow(Integer.parseInt(arg));
+                    System.out.println("You wait " + arg + " days.");
+                    describeShakeResult(fallen);
+                } catch (NumberFormatException ex) {
+                    System.out.println("Can't wait for \"" + arg + "\" days, it's not a number!");
+                }
+            }
+        } else {
+            int fallen = getAppleTree().grow();
+            System.out.println("You wait for a long time...");
+            describeGrowResult(fallen);
+        }
+    }
+
+    protected void describeGrowResult(int fallen) {
+        switch (fallen) {
+            case 0:
+                System.out.println("Unfortunately apple tree seemns to be empty.");
+                break;
+            case 1:
+                System.out.println("Only one apple is grown on the tree.");
+                break;
+            default:
+                System.out.println(fallen + " apples are grown on the tree.");
+                break;
+        }
+    }
+
+    protected void executeShake(String[] args) {
+        if (args.length > 0) {
+            for (String arg : args) {
+                try {
+                    int fallen = getAppleTree().shake(Integer.parseInt(arg));
+                    System.out.println("You've shaken the apple tree with full force for " + arg + " seconds.");
+                    describeShakeResult(fallen);
+                } catch (NumberFormatException ex) {
+                    System.out.println("Can't shake with for \"" + arg + "\" seconds, it's not a number!");
+                }
+            }
+        } else {
+            int fallen = getAppleTree().shake();
+            System.out.println("You've shaken the apple tree with full force.");
+            describeShakeResult(fallen);
+        }
+    }
+
+    protected void describeShakeResult(int fallen) {
+        switch (fallen) {
+            case 0:
+                System.out.println("Unfortunately nothing happens.");
+                break;
+            case 1:
+                System.out.println("Only one apple fall down");
+                break;
+            default:
+                System.out.println(fallen + " apples fall down.");
+                break;
+        }
+    }
+
+    protected void executeExit() {
         System.out.println("You've just cut your wonderful apple tree down...");
     }
 

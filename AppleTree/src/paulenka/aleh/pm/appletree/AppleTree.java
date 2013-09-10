@@ -29,10 +29,18 @@ public class AppleTree {
         return applesGrown;
     }
 
+    public int grow(int parseInt) {
+        return 0;
+    }
+
     public int shake() {
         int applesFallen = getRandom().nextInt(getNumberOfApples());
         setNumberOfApples(getNumberOfApples() - applesFallen);
 
         return applesFallen;
+    }
+
+    public int shake(int parseInt) {
+        return 0;
     }
 }
