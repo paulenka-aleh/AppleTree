@@ -9,6 +9,7 @@ public class Application {
 
     private final static String COMMAND_GROW = "grow";
     private final static String COMMAND_SHAKE = "shake";
+    private final static String COMMAND_BLOSSOM = "blossom";
     private final static String COMMAND_EXIT = "exit";
 
     private AppleTree appleTree;
@@ -41,6 +42,9 @@ public class Application {
                         break;
                     case COMMAND_SHAKE:
                         executeShake(args);
+                        break;
+                    case COMMAND_BLOSSOM:
+                        executeBlossom(args);
                         break;
                     case COMMAND_EXIT:
                         executeExit();
@@ -86,7 +90,7 @@ public class Application {
     protected void describeGrowResult(int fallen) {
         switch (fallen) {
             case 0:
-                System.out.println("Unfortunately apple tree seemns to be empty.");
+                System.out.println("Unfortunately no more apples were grown.");
                 break;
             case 1:
                 System.out.println("Only one apple is grown on the tree.");
@@ -129,12 +133,44 @@ public class Application {
         }
     }
 
+    protected void executeBlossom(String[] args) {
+        if (args.length > 0) {
+            for (String arg : args) {
+                try {
+                    int fallen = getAppleTree().blossom(Integer.parseInt(arg));
+                    System.out.println("You wait " + arg + " days.");
+                    describeBlossomResult(fallen);
+                } catch (NumberFormatException ex) {
+                    System.out.println("Can't wait for \"" + arg + "\" days, it's not a number!");
+                }
+            }
+        } else {
+            int fallen = getAppleTree().blossom();
+            System.out.println("You wait for a long time...");
+            describeBlossomResult(fallen);
+        }
+    }
+
+    protected void describeBlossomResult(int fallen) {
+        switch (fallen) {
+            case 0:
+                System.out.println("Unfortunately no more flowers were bossomed.");
+                break;
+            case 1:
+                System.out.println("Only one flower were blossomed out.");
+                break;
+            default:
+                System.out.println(fallen + " flowers are blossomed out on the tree.");
+                break;
+        }
+    }
+
     protected void executeExit() {
         System.out.println("You've just cut your wonderful apple tree down...");
     }
 
     protected void executeError(String command) {
         System.out.println("\"" + command + "\" is an incorrect command.");
-        System.out.println("Available commands: " + COMMAND_GROW + ", " + COMMAND_SHAKE + ", " + COMMAND_EXIT);
+        System.out.println("Available commands: " + COMMAND_GROW + ", " + COMMAND_SHAKE + ", " + COMMAND_EXIT + ", " + COMMAND_BLOSSOM);
     }
 }
