@@ -71,7 +71,7 @@ public class Application {
                 try {
                     int fallen = getAppleTree().grow(Integer.parseInt(arg));
                     System.out.println("You wait " + arg + " days.");
-                    describeShakeResult(fallen);
+                    describeGrowResult(fallen);
                 } catch (NumberFormatException ex) {
                     System.out.println("Can't wait for \"" + arg + "\" days, it's not a number!");
                 }
