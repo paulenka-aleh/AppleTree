@@ -2,11 +2,13 @@ package paulenka.aleh.pm.appletree;
 
 public class AppleTree {
 
-    public void grow() {
+    public int grow() {
         System.out.println("You spent some time while apples are growing.");
+        return 0;
     }
 
-    public void shake() {
+    public int shake() {
         System.out.println("You have shaken the apple tree.");
+        return 0;
     }
 }
